@@ -1,15 +1,9 @@
 package edu.iis.mto.similarity;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import edu.iis.mto.similarity.SimilarityFinder;
-
-import java.util.DoubleSummaryStatistics;
 
 public class SimilarityFinderTest {
 
@@ -41,4 +35,6 @@ public class SimilarityFinderTest {
         }
         testHelperForJackadSImilarity(seq, seq, 1);
     }
+    @Test
+    
 }
