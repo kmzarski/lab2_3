@@ -15,7 +15,6 @@ public class SimilarityFinderTest {
 
     private final double E = 0.0000001;
 
-
     private void testHelperForJackadSImilarity(int[] seq1, int[] seq2, double value) {
         SimilarityFinder similarityFinder = new SimilarityFinder(new DooblerSequenceSearcher());
         double jackardSimilarity = similarityFinder.calculateJackardSimilarity(seq1, seq2);
@@ -30,6 +29,16 @@ public class SimilarityFinderTest {
     @Test
     public void testForTwoDiffrentOneElementArray() {
         DooblerSequenceSearcher.toReturn.push(false);
-        testHelperForJackadSImilarity(new int[]{1},new int[] {2},0);
+        testHelperForJackadSImilarity(new int[] {1}, new int[] {2}, 0);
+    }
+
+    @Test
+    public void testForTwoTheSameArray() {
+        DooblerSequenceSearcher.toReturn.push(true);
+        int seq[] = new int[] {1, 2, 3, 4};
+        for (int i = 0; i <= seq.length; i++) {
+            DooblerSequenceSearcher.toReturn.push(true);
+        }
+        testHelperForJackadSImilarity(seq, seq, 1);
     }
 }
