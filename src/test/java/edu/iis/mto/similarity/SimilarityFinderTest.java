@@ -28,4 +28,22 @@ public class SimilarityFinderTest {
         double value = similarityFinder.calculateJackardSimilarity(seq, seq);
         assertThat(value, is(1.0));
     }
+
+    @Test
+    public void testCheckingIfSequanceIsChangingAfterCalculated(){
+        SimilarityFinder similarityFinder = new SimilarityFinder(new DooblerSequenceSearcher());
+        int seq1[] = new int[]{1, 2, 3, 4};
+        int copySeq[] = seq1.clone();
+        double value = similarityFinder.calculateJackardSimilarity(seq1, seq1);
+        assertThat(seq1, is(copySeq));
+    }
+
+    @Test
+    public void testCheckingIfSequanceIsUsingInCalculatedWithoutChanges(){
+        DooblerSequenceSearcher dooblerSequenceSearcher = new DooblerSequenceSearcher();
+        SimilarityFinder similarityFinder = new SimilarityFinder(dooblerSequenceSearcher);
+        int seq1[] = new int[]{1, 2, 3, 4};
+        double value = similarityFinder.calculateJackardSimilarity(seq1, seq1);
+        assertThat(seq1, is(dooblerSequenceSearcher.getSeqInMemory()));
+    }
 }

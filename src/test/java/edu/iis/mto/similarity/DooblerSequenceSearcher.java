@@ -13,6 +13,14 @@ public class DooblerSequenceSearcher implements SequenceSearcher {
     private int counter = 0;
     private int[] seqInMemory;
 
+    public int getCounter() {
+        return counter;
+    }
+
+    public int[] getSeqInMemory() {
+        return seqInMemory;
+    }
+
     @Override
     public SearchResult search(int key, int[] seq) {
         SearchResult.Builder builder = SearchResult.builder();
