@@ -53,6 +53,15 @@ public class SimilarityFinderTest {
         SimilarityFinder similarityFinder = new SimilarityFinder(dooblerSequenceSearcher);
         int seq1[] = new int[]{1, 2, 3, 4};
         similarityFinder.calculateJackardSimilarity(seq1, seq1);
-        assertThat(4,is(dooblerSequenceSearcher.getCounter()));
+        assertThat(4, is(dooblerSequenceSearcher.getCounter()));
+    }
+
+    @Test
+    public void testForTwoDiffrenArrayWithSomeSameValueInAscendingOrder() {
+        SimilarityFinder similarityFinder = new SimilarityFinder(new DooblerSequenceSearcher());
+        int seq1[] = new int[]{1, 2, 3, 4};
+        int seq2[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        double value = similarityFinder.calculateJackardSimilarity(seq1, seq2);
+        assertThat(value, is(0.4));
     }
 }
