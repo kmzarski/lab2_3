@@ -64,4 +64,13 @@ public class SimilarityFinderTest {
         double value = similarityFinder.calculateJackardSimilarity(seq1, seq2);
         assertThat(value, is(0.4));
     }
+
+    @Test
+    public void testForTwoDiffrenArrayWithSomeSameValueInRandomOrder() {
+        SimilarityFinder similarityFinder = new SimilarityFinder(new DooblerSequenceSearcher());
+        int seq1[] = new int[]{5, 9, 7, 4};
+        int seq2[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        double value = similarityFinder.calculateJackardSimilarity(seq1, seq2);
+        assertThat(value, is(0.4));
+    }
 }
