@@ -30,7 +30,7 @@ public class SimilarityFinderTest {
     }
 
     @Test
-    public void testCheckingIfSequanceIsChangingAfterCalculated(){
+    public void testCheckingIfSequanceIsChangingAfterCalculated() {
         SimilarityFinder similarityFinder = new SimilarityFinder(new DooblerSequenceSearcher());
         int seq1[] = new int[]{1, 2, 3, 4};
         int copySeq[] = seq1.clone();
@@ -39,11 +39,20 @@ public class SimilarityFinderTest {
     }
 
     @Test
-    public void testCheckingIfSequanceIsUsingInCalculatedWithoutChanges(){
+    public void testCheckingIfSequanceIsUsingInCalculatedWithoutChanges() {
         DooblerSequenceSearcher dooblerSequenceSearcher = new DooblerSequenceSearcher();
         SimilarityFinder similarityFinder = new SimilarityFinder(dooblerSequenceSearcher);
         int seq1[] = new int[]{1, 2, 3, 4};
         double value = similarityFinder.calculateJackardSimilarity(seq1, seq1);
         assertThat(seq1, is(dooblerSequenceSearcher.getSeqInMemory()));
+    }
+
+    @Test
+    public void testForCheckingSequanceSearcherCounterTimeUsedSearch() {
+        DooblerSequenceSearcher dooblerSequenceSearcher = new DooblerSequenceSearcher();
+        SimilarityFinder similarityFinder = new SimilarityFinder(dooblerSequenceSearcher);
+        int seq1[] = new int[]{1, 2, 3, 4};
+        similarityFinder.calculateJackardSimilarity(seq1, seq1);
+        assertThat(4,is(dooblerSequenceSearcher.getCounter()));
     }
 }

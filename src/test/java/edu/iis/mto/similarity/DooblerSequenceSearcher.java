@@ -25,10 +25,10 @@ public class DooblerSequenceSearcher implements SequenceSearcher {
     public SearchResult search(int key, int[] seq) {
         SearchResult.Builder builder = SearchResult.builder();
         seqInMemory = seq;
-
+        counter++;
         for (int i = 0; i < seq.length; i++) {
             if (seq[i] == key) {
-                counter++;
+
                 return builder.withFound(true).withPosition(i).build();
             }
         }
