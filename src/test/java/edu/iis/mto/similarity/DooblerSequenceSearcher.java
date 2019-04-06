@@ -2,24 +2,29 @@ package edu.iis.mto.similarity;
 
 import edu.iis.mto.search.SearchResult;
 import edu.iis.mto.search.SequenceSearcher;
-import edu.iis.mto.search.SearchResult;
-import edu.iis.mto.search.SearchResult.Builder;
-import edu.iis.mto.search.SequenceSearcher;
+import edu.iis.mto.similarity.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.Arrays;
 
 public class DooblerSequenceSearcher implements SequenceSearcher {
 
-    public static Vector<Integer> searched = new Vector<>();
-    public static Stack<Boolean> toReturn = new Stack<>();
-    public static int counter = 0;
+    private int counter = 0;
+    private int[] seqInMemory;
 
     @Override
     public SearchResult search(int key, int[] seq) {
-        searched.add(key);
-        counter++;
-        return SearchResult.builder().withFound(toReturn.pop()).build();
+        SearchResult.Builder builder = SearchResult.builder();
+        seqInMemory = seq;
+
+        for (int i = 0; i < seq.length; i++) {
+            if (seq[i] == key) {
+                counter++;
+                return builder.withFound(true).withPosition(i).build();
+            }
+        }
+
+        return builder.withFound(false).build();
     }
 }
